@@ -1,0 +1,249 @@
+$bg-dark: #121827;
+$bg-darker: #0f1623;
+$bg-hover: rgba(31, 41, 55, 0.5);
+$border-color: #1f2937;
+$text-primary: #d1d5db;
+$text-secondary: #6b7280;
+$text-heading: #9ca3af;
+
+$green-bg: rgba(6, 78, 59, 0.5);
+$green-text: #34d399;
+$red-bg: rgba(127, 29, 29, 0.4);
+$red-text: #f87171;
+$blue-bg: rgba(30, 58, 138, 0.4);
+$blue-text: #60a5fa;
+$gray-bg: rgba(55, 65, 81, 0.5);
+$gray-text: #9ca3af;
+
+.contact-table-container {
+  background-color: $bg-dark;
+  color: $text-primary;
+  padding: 27px 32px;
+  min-height: 100vh;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    border-right: 1px solid $border-color;
+    padding: 24px 52px;
+
+    &:first-child {
+      border-right: none;
+      padding-bottom: 8px;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    &:last-child {
+      border: none !important;
+      padding-bottom: 8px;
+    }
+    &:hover {
+      border-right: none;
+    }
+  }
+  td {
+    padding: 24px 52px;
+
+    text-align: left;
+    border-right: 1px solid $border-color;
+
+    &:first-child {
+      border-right: none;
+      padding: 17px 0px;
+      padding-right: 0px;
+    }
+    &:last-child {
+      border: none !important;
+      padding: 17px 0px;
+    }
+    &:hover {
+      border-right: none;
+    }
+  }
+
+  .contact-table tr:hover td,
+  .contact-table tr:hover th {
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
+    border-left: none;
+  }
+
+  .contact-table tr:hover + tr td {
+    border-top: none;
+  }
+
+  th {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-heading;
+    border-bottom: 1px solid $border-color;
+  }
+
+  tr {
+    border-bottom: 1px solid $border-color;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: $bg-hover;
+      border: none;
+    }
+  }
+
+  .checkbox-column {
+    width: fit-content;
+
+    input[type="checkbox"] {
+      background-color: $bg-darker;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+    }
+  }
+
+  .action-column {
+    width: 32px;
+    text-align: right;
+    border: none !important;
+
+    .settings-icon {
+      margin-left: auto;
+    }
+  }
+
+  thead th.action-column {
+    border-right: none !important;
+  }
+}
+
+.contact-name {
+  font-weight: 500;
+}
+
+.contact-type {
+  font-size: 14px;
+  color: $text-secondary;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    font-size: 12px;
+  }
+}
+
+.responsible-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #4b5563;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+.assign-to-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: $green-bg;
+  color: $green-text;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 14px;
+  width: fit-content;
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $green-text;
+  }
+}
+
+.tags-container {
+  display: flex;
+  gap: 4px;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  &.tag-red {
+    background-color: $red-bg;
+    color: $red-text;
+  }
+
+  &.tag-blue {
+    background-color: $blue-bg;
+    color: $blue-text;
+  }
+
+  &.tag-gray {
+    background-color: $gray-bg;
+    color: $gray-text;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: $text-secondary;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+.contact-table tr:hover .action-buttons {
+  opacity: 1;
+}
+
+.contact-table td.action-column,
+.contact-table th.action-column {
+  border: none !important;
+}

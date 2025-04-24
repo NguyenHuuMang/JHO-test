@@ -1,0 +1,28 @@
+.navbar-component {
+  border-right: 1px solid #273140;
+  background: #17202e;
+  width: 50px;
+  overflow-y: auto;
+  height: 100%;
+  padding: 10px 0;
+  border-right-width: 1px;
+  position: relative;
+  overflow: hidden;
+  .navbar-icon {
+    padding: 15px;
+    cursor: pointer;
+    img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+    &:hover {
+      background: #dd531333;
+      border-right: 2px solid #dd5313;
+    }
+  }
+  .active-path {
+    background: #dd531333;
+    border-right: 2px solid #dd5313;
+  }
+}

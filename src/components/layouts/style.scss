@@ -1,0 +1,12 @@
+.master-layout {
+  display: flex;
+  height: calc(100vh - 72px);
+  overflow: hidden;
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 100%;
+  background-color: #09091a;
+}

@@ -1,18 +1,14 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-interface Props {
-  children: React.ReactNode;
-}
-
-const PublicRoute: React.FC<Props> = ({ children }) => {
+const PublicRoute: React.FC = () => {
   const token = localStorage.getItem("token");
 
   if (token) {
     return <Navigate to="/dashboard" replace />;
   }
 
-  return <>{children}</>;
+  return <Outlet />;
 };
 
 export default PublicRoute;

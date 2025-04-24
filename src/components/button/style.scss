@@ -1,0 +1,49 @@
+.button-component {
+  width: 402px;
+  height: 52px;
+  border-radius: 3;
+  padding: 15px 55px;
+  gap: 10;
+  font-size: 16px;
+  border: none;
+  background-color: #dd5313;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-login-fb {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 402px;
+  height: 52px;
+  border-radius: 3;
+  padding: 15px 55px;
+  gap: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #415a93;
+  color: #ffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-login-gg {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 402px;
+  height: 52px;
+  border-radius: 3;
+  padding: 15px 55px;
+  gap: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #fff;
+  color: #dd5313;
+  font-weight: 600;
+  cursor: pointer;
+}

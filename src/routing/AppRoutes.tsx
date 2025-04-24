@@ -5,6 +5,8 @@ import PublicRoute from "./PublicRoute";
 import HomePage from "../page/HomePage";
 import Login from "../auth/Login";
 import Signup from "../auth/SignUp";
+import MasterLayout from "../components/layouts/MasterLayout";
+import Contact from "../page/contact";
 
 const AppRoutes = () => {
   const publicRoutes = [
@@ -14,22 +16,17 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          }
-        />
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Route>
 
-        {publicRoutes.map(({ path, element }) => (
-          <Route
-            key={path}
-            path={path}
-            element={<PublicRoute>{element}</PublicRoute>}
-          />
-        ))}
+        <Route element={<PrivateRoute />}>
+          <Route element={<MasterLayout />}>
+            <Route path="/dashboard" element={<HomePage />} />
+            <Route path="/contacts" element={<Contact />} />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

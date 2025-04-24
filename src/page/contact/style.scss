@@ -1,0 +1,179 @@
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  .menu-contact {
+    border-bottom: 1px solid #273140;
+    .items-menu {
+      margin-left: 13px;
+      display: flex;
+      flex-direction: row;
+      .items {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 16px 20px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        cursor: pointer;
+        .icon-size {
+          width: 18px;
+          height: 18px;
+          margin-right: 8px;
+          filter: brightness(0) saturate(100%) invert(59%) sepia(2%)
+            saturate(0%) hue-rotate(179deg) brightness(91%) contrast(85%);
+          transition: filter 0.3s, border 0.3s;
+        }
+
+        .text {
+          font-size: 14px;
+          color: #ffffff;
+        }
+
+        &:hover {
+          border-bottom: 4px solid #dd5313;
+        }
+
+        &.active {
+          background: #dd531333;
+          border-bottom: 4px solid #dd5313;
+          .icon-size {
+            filter: brightness(0) saturate(100%) sepia(100%) hue-rotate(0deg)
+              brightness(1) contrast(1) drop-shadow(0 0 0 #dd5313);
+          }
+        }
+      }
+    }
+  }
+  .content-contact {
+    width: 100%;
+    padding: 28px 24px 37px;
+  }
+  .header-contact-page {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .btn-add-contact {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      .btn-add {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        border-radius: 10px;
+        width: fit-content;
+        align-items: center;
+        justify-content: center;
+      }
+      .total-contact {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: center;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  .more-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+  }
+  .plus-de-filtre {
+    border: 1px solid #273140;
+    height: 40px;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 11px;
+    min-width: 147px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    .filter {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+    }
+    &:hover {
+      border: 1px solid #dd5313;
+      box-shadow: 0px 0px 40px 0px #dd531333;
+    }
+  }
+
+  .plus-de-settings {
+    border: 1px solid #273140;
+    height: 40px;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 11px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    .filter {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+    }
+    &:hover {
+      border: 1px solid #dd5313;
+      box-shadow: 0px 0px 40px 0px #dd531333;
+    }
+  }
+  .contact-tab {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 48px;
+  }
+  .popup-setting {
+    position: absolute;
+    background: #09091a;
+    padding: 16px;
+    right: 20px;
+    top: 207px;
+    border: 1px solid #283140;
+    z-index: 9;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .item-popup {
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #fff;
+      cursor: pointer;
+      &:hover {
+        color: #dd5313;
+      }
+    }
+  }
+}

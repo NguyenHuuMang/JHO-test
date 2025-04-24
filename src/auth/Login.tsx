@@ -54,47 +54,26 @@ const Login = () => {
   }
 
   return (
-    <div
-      className="position-relative w-100 vh-100 d-flex justify-content-center align-items-center login"
-      style={{
-        backgroundImage: `url(${background})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        overflow: "hidden",
-      }}
-    >
-      <img
-        src={circle}
-        alt="circle"
-        className="position-absolute top-50 start-50 translate-middle"
-        style={{
-          width: "62%",
-          height: "75%",
-          objectFit: "contain",
-          zIndex: 1,
-          pointerEvents: "none",
-        }}
-      />
+    <div className="login-page">
+      <img src={circle} alt="circle" className="bg-cirle" />
       <div className="d-flex align-items-center justify-content-center align-self-centera h-100">
         <div className="login-form">
           <img src={logo} alt="logo" />
-          <div className="d-flex flex-column" style={{ gap: "60px" }}>
-            <div className="d-flex flex-column gap-8px">
+          <div className="content-login">
+            <div className="title">
               <span className="title-connexion">Connexion</span>
               <span className="description-connexion">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry
               </span>
             </div>
-            <div className="d-flex flex-column" style={{ gap: "28px" }}>
+            <div className="form-submit">
               <form onSubmit={formik.handleSubmit}>
-                <div className="d-flex flex-column gap-8px">
+                <div className="input-wrapper">
                   {errorMessage && (
-                    <div className="text-danger mb-2 fw-bold">
-                      {errorMessage}
-                    </div>
+                    <div className="error-message">{errorMessage}</div>
                   )}
-                  <div className="d-flex flex-column" style={{ gap: "12px" }}>
+                  <div className="distance-input">
                     <Input
                       placeholder="Email Address"
                       name="email"
@@ -115,7 +94,7 @@ const Login = () => {
                       touched={touched.password}
                     />
                   </div>
-                  <div className="d-flex w-100 align-items-end justify-content-end ">
+                  <div className="wrapper-forgot-password">
                     <span className="forgot-password">
                       {" "}
                       Mot de passe oublié?
@@ -126,31 +105,15 @@ const Login = () => {
                   Connexion
                 </Button>
               </form>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  textAlign: "center",
-                  color: "#fff",
-                }}
-              >
-                <div
-                  style={{ flex: 1, height: "1px", backgroundColor: "#ccc" }}
-                />
-                <span style={{ padding: "0 10px", fontWeight: "bold" }}>
-                  Or
-                </span>
-                <div
-                  style={{ flex: 1, height: "1px", backgroundColor: "#ccc" }}
-                />
+              <div className="another-signin">
+                <div className="border-other" />
+                <span className="text-other">Or</span>
+                <div className="border-other" />
               </div>
-              <div className="d-flex flex-column gap-2">
+              <div className="signin-gg-fb">
                 <SignInGoogle />
                 <SignInFacebook />
-                <div
-                  className="d-flex flex-row align-items-center justify-content-center"
-                  style={{ marginTop: "12px", gap: "12px" }}
-                >
+                <div className="text-signup">
                   <span className="not-a-member">Not a member?</span>
                   <span className="signup-text">Inscription</span>
                 </div>
