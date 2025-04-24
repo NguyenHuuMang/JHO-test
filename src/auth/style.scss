@@ -1,0 +1,65 @@
+.login {
+  .login-form {
+    width: 506px;
+    border-radius: 20px;
+    border: 1px solid #ffffff33;
+    background: #ffffff12;
+    padding: 46px 52px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    gap: 58px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .title-connexion {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 48px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #ffffff;
+  }
+  .description-connexion {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 32px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #ffffff;
+  }
+  .forgot-password {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: right;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+    color: #16fcd2;
+    cursor: pointer;
+  }
+  .not-a-member {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 32px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #ffffff;
+  }
+  .signup-text {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 32px;
+    letter-spacing: 0%;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-offset: 0%;
+    text-decoration-thickness: 0%;
+    color: #dd5313;
+  }
+}
