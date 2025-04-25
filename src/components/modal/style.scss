@@ -97,6 +97,11 @@
   overflow-y: auto;
   max-height: calc(100vh - 100px);
 }
+.special-modal-body {
+  padding: 23px 198px;
+  overflow-y: auto;
+  max-height: calc(100vh - 100px);
+}
 
 @keyframes fadeIn {
   from {

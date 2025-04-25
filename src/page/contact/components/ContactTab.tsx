@@ -4,15 +4,17 @@ import Table from "../../../components/table/Table";
 import { CONTACT_LISTING } from "./config";
 import { ContactListingType } from "../../../common/type";
 import Pagination from "../../../components/pagination";
+import "./../style.scss";
+import CreateEditContact from "./CreateEditContact/CreateEditContact";
 
 type Props = {
   className?: string;
 };
 
 const ContactTab = ({ className }: Props) => {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(25);
-  const total = 500;
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(25);
+  const [showEdit, setShowEdit] = useState<boolean>(false);
   const [data, setData] = useState<ContactListingType[]>([
     {
       id: 1,
@@ -126,6 +128,17 @@ const ContactTab = ({ className }: Props) => {
       selected: false,
     },
   ]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handleItemsPerPageChange = (items: number) => {
+    setItemsPerPage(items);
+  };
+  function handleEdit() {
+    setShowEdit(!showEdit);
+  }
   return (
     <div className={clsx("", className)}>
       <Table
@@ -133,17 +146,24 @@ const ContactTab = ({ className }: Props) => {
         config={CONTACT_LISTING}
         setData={setData}
         showActions={true}
+        onEdit={handleEdit}
       />
-      {/* <Pagination
-        currentPage={page}
-        totalItems={total}
-        itemsPerPage={limit}
-        onPageChange={setPage}
-        onItemsPerPageChange={(newLimit) => {
-          setLimit(newLimit);
-          setPage(1);
-        }}
-      /> */}
+      <div className="pagination-component">
+        <Pagination
+          totalItems={data.length}
+          itemsPerPageOptions={[10, 25, 50, 100]}
+          defaultItemsPerPage={25}
+          onPageChange={handlePageChange}
+          onItemsPerPageChange={handleItemsPerPageChange}
+        />
+      </div>
+
+      {showEdit && (
+        <CreateEditContact
+          showCreateEdit={showEdit}
+          handleShowCreateEdit={handleEdit}
+        />
+      )}
     </div>
   );
 };

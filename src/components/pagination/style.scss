@@ -1,62 +1,184 @@
 .pagination-container {
+  width: 60%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0a0a1a;
-  padding: 16px;
-  border-radius: 8px;
-  color: #ffffff;
-  font-size: 14px;
-}
+  padding: 12px 20px;
+  background-color: transparent;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  .left-pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .items-per-page {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-.pagination-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+    .label {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 100%;
+      letter-spacing: 0%;
+      color: #a9abad;
+    }
 
-  select {
-    background-color: #181830;
-    border: 1px solid #2f2f52;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    outline: none;
+    .dropdown {
+      position: relative;
 
-    option {
-      background-color: #181830;
-      color: white;
+      .dropdown-toggle {
+        width: 46;
+        height: 32;
+        border-width: 1px;
+        border-radius: 10px;
+        background: #09091a;
+        border: 1px solid #273140;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 8px;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.15);
+        }
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        background: #09091a;
+        padding: 16px;
+        right: 20px;
+        top: 207px;
+        border: 1px solid #283140;
+        z-index: 9;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        .dropdown-item {
+          padding: 8px 16px;
+          font-size: 14px;
+          cursor: pointer;
+          white-space: nowrap;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+          }
+
+          &.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            font-weight: 500;
+          }
+        }
+      }
+      .dropdown-toggle::after {
+        display: none;
+      }
+    }
+  }
+
+  .items-range {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #a9abad;
+    margin-left: 16px;
+  }
+
+  .navigation-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .nav-button {
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+
+      &:hover:not(:disabled) {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &:disabled {
+        color: rgba(255, 255, 255, 0.3);
+        cursor: not-allowed;
+      }
+    }
+
+    .page-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .current-page {
+        background-color: transparent;
+        border-radius: 10px;
+        padding: 8px;
+        font-size: 12px;
+        text-align: center;
+        font-weight: 700;
+        border: 1px solid #273140;
+      }
+
+      .page-separator {
+        font-size: 12px;
+        color: #a9abad;
+      }
+      .per-page {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+      }
+
+      .total-pages {
+        font-size: 12px;
+        text-align: center;
+      }
     }
   }
 }
-
-.pagination-right {
+.custom-popup {
+  position: absolute;
   display: flex;
-  align-items: center;
-  gap: 8px;
-
-  button {
-    background-color: transparent;
-    color: white;
-    border: none;
-    padding: 6px 8px;
-    border-radius: 4px;
+  padding: 8px;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  border: 1px solid #273140;
+  font-size: 12px;
+  text-align: end;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #283140;
+  top: -160px;
+  left: -10px;
+  .dropdown-item {
+    padding: 8px;
+    font-size: 12px;
     cursor: pointer;
-
-    &:hover:not(:disabled) {
-      background-color: #2f2f52;
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  }
-
-  .current-page {
-    background-color: #181830;
-    border: 1px solid #2f2f52;
-    padding: 4px 10px;
+    white-space: nowrap;
     border-radius: 4px;
-    font-weight: bold;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.15);
+      font-weight: 500;
+    }
   }
 }

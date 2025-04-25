@@ -1,17 +1,20 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./style.scss";
 
+import { useEffect } from "react";
+import logoutIcon from "../../assets/images/logout.png";
 import documentIcon from "../../assets/images/nav-document.png";
-import userIcon from "../../assets/images/nav-user.png";
-import menuIcon from "../../assets/images/nav-menu.png";
-import peopleIcon from "../../assets/images/nav-people.png";
 import educationIcon from "../../assets/images/nav-education.png";
-import noteIcon from "../../assets/images/nav-note.png";
 import favoriteIcon from "../../assets/images/nav-favorite.png";
-import uploadIcon from "../../assets/images/nav-upload.png";
 import fileIcon from "../../assets/images/nav-file.png";
-import taskIcon from "../../assets/images/nav-task.png";
 import listIcon from "../../assets/images/nav-list.png";
+import menuIcon from "../../assets/images/nav-menu.png";
+import noteIcon from "../../assets/images/nav-note.png";
+import peopleIcon from "../../assets/images/nav-people.png";
+import taskIcon from "../../assets/images/nav-task.png";
+import uploadIcon from "../../assets/images/nav-upload.png";
+import userIcon from "../../assets/images/nav-user.png";
+import { useAuth } from "../context/AuthContext";
 
 const icons = [
   { icon: documentIcon, path: "/documents" },
@@ -30,20 +33,39 @@ const icons = [
 const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { logout } = useAuth();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
-    <nav className="navbar-component">
-      {icons.map((item, index) => (
-        <img
-          key={index}
-          className={`navbar-icon ${
-            location.pathname === item.path ? "active-path" : ""
-          }`}
-          onClick={() => navigate(item.path)}
-          alt="icon"
-          src={item.icon}
-        />
-      ))}
-    </nav>
+    <div className="class-navbar" style={{ backgroundColor: "#17202e" }}>
+      <nav className="navbar-component">
+        {icons.map((item, index) => (
+          <img
+            key={index}
+            className={`navbar-icon ${
+              location.pathname === item.path ? "active-path" : ""
+            }`}
+            onClick={() => navigate(item.path)}
+            alt="icon"
+            src={item.icon}
+          />
+        ))}
+      </nav>
+      <div
+        className="icon-logout"
+        onClick={() => {
+          logout();
+          navigate("/login");
+        }}
+      >
+        <img src={logoutIcon} alt="logout" className="icon-size" />
+      </div>
+    </div>
   );
 };
 

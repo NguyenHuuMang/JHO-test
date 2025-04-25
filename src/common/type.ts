@@ -5,6 +5,7 @@ export type User = {
     password: string;
     role: string;
     token?: string | any
+    avatar?: string
 }
 
 export type TableConfig = {

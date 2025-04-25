@@ -5,9 +5,13 @@ import ContactTab from "./components/ContactTab";
 import "./style.scss";
 
 import iconMenuContact from "../../assets/images/menu-contact.png";
+import iconMenuContactNonActive from "../../assets/images/contact-nonactive.png";
 import iconMenuTag from "../../assets/images/menu-tag.png";
+import iconMenuTagActive from "../../assets/images/etiquette.png";
 import iconMenuEuro from "../../assets/images/menu-euro.png";
+import iconMenuEuroActive from "../../assets/images/euroActive.png";
 import iconMenuTask from "../../assets/images/menu-task.png";
+import iconMenuTaskActive from "../../assets/images/taskActive.png";
 import iconPlus from "../../assets/images/btn-plus-icon.png";
 import preferencesIcon from "../../assets/images/preferences.png";
 import userIcon from "../../assets/images/nav-user.png";
@@ -55,9 +59,16 @@ const Contact = () => {
             onClick={() => setActiveTab("Contact")}
           >
             <img
-              src={iconMenuContact}
-              alt="iconMenuContact"
-              className="icon-size"
+              src={
+                activeTab === "Contact"
+                  ? iconMenuContact
+                  : iconMenuContactNonActive
+              }
+              alt={
+                activeTab === "Contact"
+                  ? "iconMenuContact"
+                  : "iconMenuContactNonActive"
+              }
             />
             <div className="text">Contacts</div>
           </div>
@@ -65,21 +76,32 @@ const Contact = () => {
             className={`items ${activeTab === "Étiquettes" ? "active" : ""}`}
             onClick={() => setActiveTab("Étiquettes")}
           >
-            <img src={iconMenuTag} alt="iconMenuTag" className="icon-size" />
+            <img
+              src={activeTab === "Étiquettes" ? iconMenuTagActive : iconMenuTag}
+              alt="iconMenuTag"
+            />
             <div className="text">Étiquettes</div>
           </div>
           <div
             className={`items ${activeTab === "Opportunités" ? "active" : ""}`}
             onClick={() => setActiveTab("Opportunités")}
           >
-            <img src={iconMenuEuro} alt="iconMenuEuro" className="icon-size" />
+            <img
+              src={
+                activeTab === "Opportunités" ? iconMenuEuroActive : iconMenuEuro
+              }
+              alt="iconMenuEuro"
+            />
             <div className="text">Opportunités</div>
           </div>
           <div
             className={`items ${activeTab === "Tâches" ? "active" : ""}`}
             onClick={() => setActiveTab("Tâches")}
           >
-            <img src={iconMenuTask} alt="iconMenuTask" className="icon-size" />
+            <img
+              src={activeTab === "Tâches" ? iconMenuTaskActive : iconMenuTask}
+              alt="iconMenuTask"
+            />
             <div className="text">Tâches</div>
           </div>
         </div>

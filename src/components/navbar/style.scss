@@ -1,3 +1,10 @@
+.class-navbar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 .navbar-component {
   border-right: 1px solid #273140;
   background: #17202e;
@@ -8,6 +15,7 @@
   border-right-width: 1px;
   position: relative;
   overflow: hidden;
+
   .navbar-icon {
     padding: 15px;
     cursor: pointer;
@@ -25,4 +33,15 @@
     background: #dd531333;
     border-right: 2px solid #dd5313;
   }
+}
+
+.icon-logout {
+  padding-bottom: 18px;
+  cursor: pointer;
+}
+
+.icon-size {
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
 }

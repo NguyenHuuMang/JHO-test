@@ -1,68 +1,141 @@
-import React from "react";
+import {
+  faChevronDown,
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
+import leftIcon from "../../assets/images/leftIcon.png";
+import rightIcon from "../../assets/images/rightIcon.png";
 import "./style.scss";
 
-type PaginationProps = {
-  currentPage: number;
+interface PaginationProps {
   totalItems: number;
-  itemsPerPage: number;
+  itemsPerPageOptions?: number[];
+  defaultItemsPerPage?: number;
   onPageChange: (page: number) => void;
-  onItemsPerPageChange: (itemsPerPage: number) => void;
-};
+  onItemsPerPageChange?: (itemsPerPage: number) => void;
+  className?: string;
+}
 
 const Pagination: React.FC<PaginationProps> = ({
-  currentPage,
   totalItems,
-  itemsPerPage,
+  itemsPerPageOptions = [10, 25, 50, 100],
+  defaultItemsPerPage = 25,
   onPageChange,
   onItemsPerPageChange,
+  className = "",
 }) => {
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(defaultItemsPerPage);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
   const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    if (onPageChange) {
+      onPageChange(1);
+    }
+  }, [itemsPerPage]);
+
+  const handlePageChange = (page: number) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+
+    setCurrentPage(page);
+    if (onPageChange) {
+      onPageChange(page);
+    }
+  };
+
+  const handleItemsPerPageChange = (value: number) => {
+    setItemsPerPage(value);
+    setIsDropdownOpen(false);
+
+    if (onItemsPerPageChange) {
+      onItemsPerPageChange(value);
+    }
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
-  const handleFirstPage = () => onPageChange(1);
-  const handleLastPage = () => onPageChange(totalPages);
-  const handlePrevPage = () => onPageChange(Math.max(currentPage - 1, 1));
-  const handleNextPage = () =>
-    onPageChange(Math.min(currentPage + 1, totalPages));
-
   return (
-    <div className="pagination-container">
-      {/* Left */}
-      <div className="pagination-left">
-        <span>Éléments par page</span>
-        <select
-          value={itemsPerPage}
-          onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
-        >
-          {[10, 25, 50, 100].map((num) => (
-            <option key={num} value={num}>
-              {num}
-            </option>
-          ))}
-        </select>
-        <span>
+    <div className={`pagination-container ${className}`}>
+      <div className="left-pagination">
+        <div className="items-per-page">
+          <span className="label">Éléments par page</span>
+          <div className="dropdown">
+            <button className="dropdown-toggle" onClick={toggleDropdown}>
+              {itemsPerPage}{" "}
+              <FontAwesomeIcon icon={faChevronDown} className="" />
+            </button>
+            {isDropdownOpen && (
+              <div className="custom-popup">
+                {itemsPerPageOptions.map((option) => (
+                  <div
+                    key={option}
+                    className={`dropdown-item ${
+                      itemsPerPage === option ? "active" : ""
+                    }`}
+                    onClick={() => handleItemsPerPageChange(option)}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="items-range">
           {startItem}-{endItem} sur {totalItems} éléments
-        </span>
+        </div>
       </div>
 
-      {/* Right */}
-      <div className="pagination-right">
-        <button onClick={handleFirstPage} disabled={currentPage === 1}>
-          &laquo;
+      <div className="navigation-controls">
+        <button
+          className="nav-button first-page"
+          onClick={() => handlePageChange(1)}
+          disabled={currentPage === 1}
+        >
+          <img src={leftIcon} alt="leftIcon" />
         </button>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          &lsaquo;
+        <button
+          className="nav-button prev-page"
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          <FontAwesomeIcon icon={faChevronLeft} className="" />
         </button>
-        <span className="current-page">
-          {String(currentPage).padStart(2, "0")}
-        </span>
-        <span>de {totalPages}</span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          &rsaquo;
+
+        <div className="page-indicator">
+          <div className="current-page">
+            {currentPage.toString().padStart(2, "0")}
+          </div>
+          <div className="per-page">
+            <div className="page-separator">de</div>
+            <div className="total-pages">{totalPages}</div>
+          </div>
+        </div>
+
+        <button
+          className="nav-button next-page"
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          <FontAwesomeIcon icon={faChevronRight} className="" />
         </button>
-        <button onClick={handleLastPage} disabled={currentPage === totalPages}>
-          &raquo;
+        <button
+          className="nav-button last-page"
+          onClick={() => handlePageChange(totalPages)}
+          disabled={currentPage === totalPages}
+        >
+          <img src={rightIcon} alt="rightIcon" />
         </button>
       </div>
     </div>

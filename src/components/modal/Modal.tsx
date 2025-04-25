@@ -16,6 +16,7 @@ interface Props {
   onClickBack?: boolean;
   showTitle?: boolean;
   popupName?: string;
+  specialStyle?: boolean;
 }
 
 const Modal: FC<Props> = ({
@@ -29,6 +30,7 @@ const Modal: FC<Props> = ({
   onClickBack = true,
   showTitle = true,
   popupName,
+  specialStyle = false,
 }) => {
   if (!show) return null;
 
@@ -68,7 +70,12 @@ const Modal: FC<Props> = ({
               />
             </div>
           )}
-          <div className="custom-modal-content custom-modal-body">
+          <div
+            className={clsx(
+              "custom-modal-content",
+              specialStyle ? "special-modal-body" : "custom-modal-body"
+            )}
+          >
             {children}
           </div>
         </div>

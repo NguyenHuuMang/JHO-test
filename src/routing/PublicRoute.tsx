@@ -5,7 +5,7 @@ const PublicRoute: React.FC = () => {
   const token = localStorage.getItem("token");
 
   if (token) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/contacts" replace />;
   }
 
   return <Outlet />;

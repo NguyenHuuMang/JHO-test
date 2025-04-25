@@ -1,12 +1,14 @@
-import React, { Dispatch, useEffect, useState } from "react";
-import { Trash2, Edit, Settings } from "lucide-react";
+import { Settings } from "lucide-react";
+import React, { Dispatch, useEffect, useRef, useState } from "react";
 import "./style.scss";
+import { ContactListingType } from "../../common/type";
+import { useAuth } from "../context/AuthContext";
 
-import trashIcon from "../../assets/images/trash-icon.png";
+import editIcon from "../../assets/images/edit-icon.png";
 import emailIcon from "../../assets/images/email-icon.png";
 import phoneIcon from "../../assets/images/phone-icon.png";
-import editIcon from "../../assets/images/edit-icon.png";
-import { ContactListingType } from "../../common/type";
+import trashIcon from "../../assets/images/trash-icon.png";
+import avatarDefault from "../../assets/images/avatar-default.jpg";
 
 type Props = {
   config: any[];
@@ -14,6 +16,8 @@ type Props = {
   showActions?: boolean;
   showCheckbox?: boolean;
   setData: Dispatch<React.SetStateAction<any[]>>;
+  onEdit?: (item: any) => void;
+  onDelete?: (item: any) => void;
 };
 
 export default function Table({
@@ -22,8 +26,14 @@ export default function Table({
   showActions = true,
   showCheckbox = true,
   setData,
+  onEdit,
+  onDelete,
 }: Props) {
   const [isAllSelected, setIsAllSelected] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { currentUser, logout } = useAuth();
+  console.log(currentUser, "currentUser");
+
   useEffect(() => {
     const allChecked =
       data.length > 0 && data.every((contact) => contact.selected);
@@ -50,7 +60,7 @@ export default function Table({
     <div className="contact-table-container">
       <div className="table-wrapper">
         <table className="contact-table">
-          <thead className="table-header">
+          <thead className={`table-header ${isScrolled ? "scrolled" : ""}`}>
             <tr>
               {showCheckbox && (
                 <th className="checkbox-column">
@@ -73,12 +83,13 @@ export default function Table({
             </tr>
           </thead>
           <tbody>
-            {data.map((contact) => {
+            {data.map((contact, index) => {
               const tagsToShow = contact.tags.slice(0, 2);
               const extraCount = contact.tags.length - 2;
               const showExtra = contact.tags.length > 2;
+              const isLastRow = index === data.length - 1;
               return (
-                <tr key={contact.id}>
+                <tr key={contact.id} className={isLastRow ? "last-row" : ""}>
                   <td className="checkbox-column">
                     <input
                       type="checkbox"
@@ -111,7 +122,15 @@ export default function Table({
                       </div>
                     ) : (
                       <div className="responsible-user">
-                        <div className="avatar">S</div>
+                        <img
+                          src={
+                            currentUser?.avatar
+                              ? currentUser.avatar
+                              : avatarDefault
+                          }
+                          alt="avatar"
+                          className="user-table-avatar"
+                        />
                         {contact.responsible}
                       </div>
                     )}
@@ -140,10 +159,16 @@ export default function Table({
                   {showActions && (
                     <td className="action-column">
                       <div className="action-buttons">
-                        <button className="action-button edit-button">
+                        <button
+                          className="action-button edit-button"
+                          onClick={() => onEdit?.(contact)}
+                        >
                           <img src={editIcon} alt="editIcon" />
                         </button>
-                        <button className="action-button delete-button">
+                        <button
+                          className="action-button delete-button"
+                          onClick={() => onDelete?.(contact)}
+                        >
                           <img src={trashIcon} alt="trashIcon" />
                         </button>
                       </div>
