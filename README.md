@@ -34,8 +34,3 @@ Email: nhmang.17@gmail.com
 Phone Number / Zalo: 0336950023
 
 Thank you!
-
-![desktop-tema-test-eng](https://github.com/user-attachments/assets/06d7b254-9e29-46a4-bb97-2e22bd56ee19)
-![mobile-tema-test-eng](https://github.com/user-attachments/assets/2f9d183b-9a23-47f8-abb6-f8a896f6a98d)
-![mobile-tema-test-vi](https://github.com/user-attachments/assets/21d16658-8106-4b9c-829d-6559c99bc717)
-![desktop-tema-test-vi](https://github.com/user-attachments/assets/81daeb99-11fa-4936-b5e3-0c3911436632)
