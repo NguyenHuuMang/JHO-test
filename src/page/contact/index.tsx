@@ -14,15 +14,36 @@ import userIcon from "../../assets/images/nav-user.png";
 import searchIcon from "../../assets/images/Search.png";
 import arrowDown from "../../assets/images/arrowDown.png";
 import contactSetting from "../../assets/images/contactSetting.png";
+import Modal from "../../components/modal/Modal";
+import CreateEditList from "./components/CreateEditList/CreateEditList";
+import CreateEditEtiquettes from "./components/CreateEditEtiquettes/CreateEditEtiquettes";
+import PopupExporter from "./components/Exporter/PopupExporter";
 
 const Contact = () => {
   const [activeTab, setActiveTab] = useState<
     "Contact" | "Étiquettes" | "Opportunités" | "Tâches"
   >("Contact");
   const [showSetting, setShowSetting] = useState<boolean>(false);
+  const [showCreateEdit, setShowCreateEdit] = useState<boolean>(false);
+  const [showCreateEditEtiquette, setShowCreateEditEtiquette] =
+    useState<boolean>(false);
+
+  const [showExporter, setShowExporter] = useState<boolean>(false);
 
   function handleShowSetting() {
     setShowSetting(!showSetting);
+  }
+
+  function handleShowCreateEditList() {
+    setShowCreateEdit(!showCreateEdit);
+  }
+
+  function handleShowCreateEditEtiquette() {
+    setShowCreateEditEtiquette(!showCreateEditEtiquette);
+  }
+
+  function handleShowExporter() {
+    setShowExporter(!showExporter);
   }
 
   return (
@@ -99,9 +120,16 @@ const Contact = () => {
             </div>
             {showSetting && (
               <div className="popup-setting">
-                <span className="item-popup">Créer / Editer une Liste</span>
-                <span className="item-popup">Créer / Editer une Etiquette</span>
-                <span className="item-popup">
+                <span className="item-popup" onClick={handleShowCreateEditList}>
+                  Créer / Editer une Liste
+                </span>
+                <span
+                  className="item-popup"
+                  onClick={handleShowCreateEditEtiquette}
+                >
+                  Créer / Editer une Etiquette
+                </span>
+                <span className="item-popup" onClick={handleShowExporter}>
                   Exporter les résultats du filtre...
                 </span>
                 <span className="item-popup">Importer des données</span>
@@ -111,6 +139,25 @@ const Contact = () => {
         </div>
         {activeTab === "Contact" && <ContactTab className="contact-tab" />}
       </div>
+
+      {showCreateEdit && (
+        <CreateEditList
+          showCreateEdit={showCreateEdit}
+          handleShowCreateEditList={handleShowCreateEditList}
+        />
+      )}
+      {showCreateEditEtiquette && (
+        <CreateEditEtiquettes
+          showCreateEditEtiquettes={showCreateEditEtiquette}
+          handleShowCreateEditEtiquettes={handleShowCreateEditEtiquette}
+        />
+      )}
+      {showExporter && (
+        <PopupExporter
+          showExporter={showExporter}
+          handleShowExporter={handleShowExporter}
+        />
+      )}
     </div>
   );
 };

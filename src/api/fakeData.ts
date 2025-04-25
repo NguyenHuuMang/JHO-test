@@ -1,4 +1,6 @@
-export const fakeUser =
+import { User } from "../common/type";
+
+export const fakeUser: User =
 {
     id: 1,
     name: 'Sébastien Hanouna',

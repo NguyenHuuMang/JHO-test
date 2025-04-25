@@ -1,0 +1,196 @@
+.create-edit-list-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  .header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 21px;
+  }
+  .BulletedList {
+    width: 18px;
+    height: 18px;
+    object-fit: cover;
+  }
+  .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    max-width: 153px;
+  }
+  .title-ajouter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .row-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: centers;
+    gap: 12px;
+  }
+
+  .input-wrapper {
+    position: relative;
+    width: 156px;
+    height: 40px;
+  }
+  .input-search {
+    width: 156px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 12px 11px 36px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    color: #ffffff;
+    background-color: #232b39;
+    &::placeholder {
+      color: #ffffff;
+      font-weight: 400;
+      font-size: 12px;
+      opacity: 1;
+    }
+    &:active {
+      border: none;
+    }
+  }
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-size: 18px;
+  }
+  .btn-add {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    border-radius: 10px;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+  }
+
+  .body {
+    width: 100%;
+  }
+  .body-add {
+    width: 100%;
+  }
+  .input-wrapper-add {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .input-add {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 12px 11px 36px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    color: #ffffff;
+    background-color: #232b39;
+    &::placeholder {
+      color: #ffffff;
+      font-weight: 400;
+      font-size: 12px;
+      opacity: 1;
+    }
+    &:active {
+      border: none;
+    }
+  }
+  .btn-ajouter {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    padding: 12px;
+    width: 204px;
+    height: 40px;
+    border: 1px dashed #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+      background-color: #232b39;
+    }
+  }
+  .border-line-item {
+    border: 1px solid #ffffff33;
+    width: 100%;
+  }
+  .btn-actions {
+    display: flex;
+    padding-top: 24px;
+    flex-direction: row;
+    gap: 26px;
+    align-items: end;
+    justify-content: end;
+    .btn-export {
+      border-radius: 10px;
+      width: 203px;
+    }
+  }
+  .annuler {
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 10px;
+  width: 100%;
+
+  .input-add {
+    width: 100%;
+    padding-right: 30px;
+    box-sizing: border-box;
+  }
+
+  .trash-icon-inside {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    z-index: 2;
+  }
+}
