@@ -40,6 +40,16 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+## 🧪 Test Information
+
+You can create your own account by clicking **"Inscription"** on the login page and registering a new user.
+
+Alternatively, you can use the following test credentials to log in:
+
+- **Email:** admin@example.com
+- **Password:** Admin@123
+
+
 ## Contact me:
 
 Email: nhmang.17@gmail.com
