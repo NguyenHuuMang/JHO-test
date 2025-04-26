@@ -32,7 +32,6 @@ export default function Table({
   const [isAllSelected, setIsAllSelected] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { currentUser, logout } = useAuth();
-  console.log(currentUser, "currentUser");
 
   useEffect(() => {
     const allChecked =

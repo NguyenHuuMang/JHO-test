@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { fakeUser } from "./../api/fakeData";
+import { fakeContactListing, fakeUser } from "./../api/fakeData";
 import "./style.scss";
 
 import circle from "../assets/images/circle.png";
@@ -25,8 +25,10 @@ const valueForm: ValuesForm = {
 };
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email("Email is not valid").required("Email is required"),
-  password: Yup.string().required("Password is required"),
+  email: Yup.string()
+    .email("Format d'e-mail invalide")
+    .required("L'e-mail est obligatoire"),
+  password: Yup.string().required("Le mot de passe est requis"),
 });
 
 const Login = () => {
@@ -40,6 +42,12 @@ const Login = () => {
       const userListing = fakeUser;
       localStorage.setItem("userListing", JSON.stringify(userListing));
     }
+
+    const existingContactListing = localStorage.getItem("contactListing");
+    if (!existingContactListing) {
+      const contactListing = fakeContactListing;
+      localStorage.setItem("contactListing", JSON.stringify(contactListing));
+    }
   }, []);
 
   const formik = useFormik<ValuesForm>({
@@ -50,7 +58,9 @@ const Login = () => {
     onSubmit: handleLogin,
   });
 
-  const { values, handleChange, handleBlur, errors, touched } = formik;
+  const { values, handleChange, handleBlur, errors, touched, setFieldError } =
+    formik;
+
   async function handleLogin() {
     try {
       const userListingString = localStorage.getItem("userListing");
@@ -65,12 +75,16 @@ const Login = () => {
           navigate("/dashboard");
           localStorage.setItem("token", user.token);
         } else {
-          throw new Error("Email or Password is not matching!");
+          throw new Error("L'e-mail ou le mot de passe ne correspondent pas!");
         }
       }
     } catch (error) {
       setErrorMessage((error as Error).message);
     }
+  }
+
+  function handleRegister() {
+    navigate("/signup");
   }
 
   return (
@@ -99,8 +113,8 @@ const Login = () => {
                     value={values.email}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    error={errors.email}
-                    touched={touched.email}
+                    error={!errorMessage ? errors.email : ""}
+                    touched={!errorMessage ? touched.email : false}
                   />
                   <Input
                     placeholder="Password"
@@ -109,8 +123,8 @@ const Login = () => {
                     value={values.password}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    error={errors.password}
-                    touched={touched.password}
+                    error={!errorMessage ? errors.password : ""}
+                    touched={!errorMessage ? touched.password : false}
                   />
                 </div>
                 <div className="wrapper-forgot-password">
@@ -131,7 +145,9 @@ const Login = () => {
               <SignInFacebook />
               <div className="text-signup">
                 <span className="not-a-member">Not a member?</span>
-                <span className="signup-text">Inscription</span>
+                <span className="signup-text" onClick={handleRegister}>
+                  Inscription
+                </span>
               </div>
             </div>
           </div>

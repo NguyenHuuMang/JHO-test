@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../../components/button/Button";
 import ContactTab from "./components/ContactTab";
 
@@ -22,21 +22,43 @@ import Modal from "../../components/modal/Modal";
 import CreateEditList from "./components/CreateEditList/CreateEditList";
 import CreateEditEtiquettes from "./components/CreateEditEtiquettes/CreateEditEtiquettes";
 import PopupExporter from "./components/Exporter/PopupExporter";
+import { ContactListingType } from "../../common/type";
 
 const Contact = () => {
+  const [data, setData] = useState<ContactListingType[]>([]);
   const [activeTab, setActiveTab] = useState<
     "Contact" | "Étiquettes" | "Opportunités" | "Tâches"
   >("Contact");
+  const settingRef = useRef<HTMLDivElement>(null);
   const [showSetting, setShowSetting] = useState<boolean>(false);
   const [showCreateEdit, setShowCreateEdit] = useState<boolean>(false);
   const [showCreateEditEtiquette, setShowCreateEditEtiquette] =
     useState<boolean>(false);
-
   const [showExporter, setShowExporter] = useState<boolean>(false);
+
+  useEffect(() => {
+    const contactListing = localStorage.getItem("contactListing");
+    if (contactListing) {
+      setData(JSON.parse(contactListing));
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   function handleShowSetting() {
     setShowSetting(!showSetting);
   }
+
+  const handleClickOutside = (event: any) => {
+    if (settingRef.current && !settingRef.current.contains(event.target)) {
+      setShowSetting(false);
+    }
+  };
 
   function handleShowCreateEditList() {
     setShowCreateEdit(!showCreateEdit);
@@ -113,9 +135,9 @@ const Contact = () => {
               <img src={iconPlus} alt="icon-plus" />
               <span>Ajout de contact</span>
             </Button>
-            <span className="total-contact">100 Contacts</span>
+            <span className="total-contact">{data.length} Contacts</span>
           </div>
-          <div className="more-actions">
+          <div className="more-actions" ref={settingRef}>
             <div className="plus-de-filtre">
               <div className="filter">
                 <img src={preferencesIcon} alt="preferencesIcon" />

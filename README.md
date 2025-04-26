@@ -1,12 +1,25 @@
 # JHO Test - Nguyen Huu Mang
 
-This project was bootstrapped with ReactJS, Typescript
+This project ORM with ReactJS, Typescript
 
 ## Available Scripts
 
+## 📦 Installation
+
+Clone this repository and install dependencies:
+
+```bash
+git clone https://github.com/NguyenHuuMang/JHO-test
+cd jho-test
+npm install
+
+Note: If yarn install or npm install fails due to dependency issues, try forcing the installation with:
+npm install -f
+
+
 In the project directory, you can run:
 
-### `yarn start` / `yarn dev`
+### `yarn start` / `yarn dev` / `npm start` / `npm run dev`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -34,3 +47,4 @@ Email: nhmang.17@gmail.com
 Phone Number / Zalo: 0336950023
 
 Thank you!
+```

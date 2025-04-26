@@ -15,6 +15,7 @@ const ContactTab = ({ className }: Props) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(25);
   const [showEdit, setShowEdit] = useState<boolean>(false);
+
   const [data, setData] = useState<ContactListingType[]>([
     {
       id: 1,
@@ -129,11 +130,16 @@ const ContactTab = ({ className }: Props) => {
     },
   ]);
 
-  const handlePageChange = (page: number) => {
+  const paginatedData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleChangeCurrentPage = (page: number) => {
     setCurrentPage(page);
   };
 
-  const handleItemsPerPageChange = (items: number) => {
+  const handleChangePageSize = (items: number) => {
     setItemsPerPage(items);
   };
   function handleEdit() {
@@ -142,7 +148,7 @@ const ContactTab = ({ className }: Props) => {
   return (
     <div className={clsx("", className)}>
       <Table
-        data={data}
+        data={paginatedData}
         config={CONTACT_LISTING}
         setData={setData}
         showActions={true}
@@ -151,10 +157,9 @@ const ContactTab = ({ className }: Props) => {
       <div className="pagination-component">
         <Pagination
           totalItems={data.length}
-          itemsPerPageOptions={[10, 25, 50, 100]}
           defaultItemsPerPage={25}
-          onPageChange={handlePageChange}
-          onItemsPerPageChange={handleItemsPerPageChange}
+          onPageChange={handleChangeCurrentPage}
+          onItemsPerPageChange={handleChangePageSize}
         />
       </div>
 
